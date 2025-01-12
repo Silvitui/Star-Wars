@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { AudioService } from '../services/audioservice.service'; // Importa tu servicio de audio
+import { AudioService } from '../services/audioservice.service'; 
 
 @Component({
   selector: 'app-opening-starwars',
@@ -9,7 +9,7 @@ import { AudioService } from '../services/audioservice.service'; // Importa tu s
 export class OpeningStarwarsComponent {
   constructor(private audioService: AudioService) {}
 
-  // Detectar movimiento del ratón para reproducir música automáticamente
+
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(): void {
     if (!this.audioService.isManuallyPaused && !this.audioService.isPlaying) {
@@ -17,7 +17,7 @@ export class OpeningStarwarsComponent {
     }
   }
 
-  // Métodos para interactuar con los controles de música
+
   playMusic(): void {
     this.audioService.playMusic();
   }
