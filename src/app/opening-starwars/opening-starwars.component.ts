@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { AudioService } from '../services/audioservice.service'; // Importa tu servicio de audio
 
 @Component({
   selector: 'app-opening-starwars',
@@ -6,43 +7,22 @@ import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
   styleUrls: ['./opening-starwars.component.scss'],
 })
 export class OpeningStarwarsComponent {
-  @ViewChild('backgroundMusic') backgroundMusic!: ElementRef<HTMLAudioElement>;
-  isMusicPlaying = false; 
-  isManuallyPaused = false; 
+  constructor(private audioService: AudioService) {}
 
- 
+  // Detectar movimiento del ratón para reproducir música automáticamente
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(): void {
-    if (this.isManuallyPaused) {
-      return;
-    }
-
-    if (!this.isMusicPlaying) {
-      const audio = this.backgroundMusic.nativeElement;
-      audio.play().then(() => {
-        this.isMusicPlaying = true; 
-      }).catch((err) => {
-        console.warn("The browser blocked autoplay", err);
-      });
+    if (!this.audioService.isManuallyPaused && !this.audioService.isPlaying) {
+      this.audioService.playMusic();
     }
   }
 
-
+  // Métodos para interactuar con los controles de música
   playMusic(): void {
-    const audio = this.backgroundMusic.nativeElement;
-    audio.play().then(() => {
-      this.isMusicPlaying = true;
-      this.isManuallyPaused = false; 
-    }).catch((err) => {
-      console.error("Error playing the music", err);
-    });
+    this.audioService.playMusic();
   }
 
- 
   pauseMusic(): void {
-    const audio = this.backgroundMusic.nativeElement;
-    audio.pause();
-    this.isMusicPlaying = false; 
-    this.isManuallyPaused = true; 
+    this.audioService.pauseMusic();
   }
 }
