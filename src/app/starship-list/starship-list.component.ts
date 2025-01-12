@@ -23,7 +23,6 @@ export class StarshipListComponent implements OnInit {
   loadPage(page: number): void {
     if (page >= 1 && page <= this.totalPages()) {
       this.currentPage.set(page); 
-      /**LLama al servicio para obtener datos -> */
       this.starWarsService.loadStarships(page);  
     }
   }

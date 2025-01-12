@@ -6,7 +6,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 500px; 
+    perspective: 700px; 
+  }
+  
+  .title {
+    font-family: 'StarJedi', sans-serif; 
+    font-size: 10rem; 
+    color: hsl(59, 100%, 49%); 
+    text-align: center;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%) scale(1); 
+    transform-origin: center; 
+    animation: titleAnimation 3s ease-out forwards; /* Velocidad del titulo*/
+    z-index: 2; /* Asegura que el título esté sobre el crawl */
+  }
+  
+  @keyframes titleAnimation {
+    0% {
+      transform: translate(-50%, -50%) scale(1); 
+      opacity: 1; 
+    }
+    100% {
+      transform: translate(-50%, -200%) scale(0.3); /* Más pequeño y arriba */
+      opacity: 0; 
+    }
   }
   
   .crawl {
@@ -15,34 +40,92 @@
     line-height: 2; 
     font-family: 'Orbitron', sans-serif;
     transform-origin: 50% 100%; 
-    transform: rotateX(70deg); /*Inclinación de las letras*/
-    animation: crawl 23s linear infinite; 
+    transform: rotateX(90deg); /* Inclinación de las letras */
+    animation: crawl 25s linear infinite; /*Tiempo de velocidad*/
+    animation-delay: 1s; /* Tiempo de espera para que el título desaparezca*/
+    visibility: hidden; 
+    animation-fill-mode: forwards; 
   }
   
   @keyframes crawl {
     0% {
-      transform: translateY(100%) rotateX(29deg) scale(1.9); /* Comienza abajo, más grande */
+      visibility: visible; /* Se hace visible cuando comienza la animación */
+      transform: translateY(250vh) rotateX(29deg) scale(1.9);
       opacity: 1; 
     }
     50% {
-      opacity: 0.7; /* Se empieza a desvanecer */
+      opacity: 1; 
     }
     100% {
-      transform: translateY(-100%) rotateX(29deg) scale(0.8); 
-      opacity: 0; 
+      transform: translateY(-100%) rotateX(32deg) scale(0.8); 
+      opacity: 0.4; 
     }
   }
-  
-  #starWarsCarousel {
-    background-color: transparent; 
-    box-shadow: none; 
-  }
-  
+
   .carousel-inner {
-    background-color: transparent; 
+    height: 70vh; 
+    display: flex;
+    align-items: center;
   }
   
-  .carousel-item {
-    background-color: transparent; 
+  
+  .carousel-item img {
+    max-height: 50vh; 
+    object-fit: cover; 
+  }
+
+ 
+
+
+.image-slide {
+  height: 60vh; 
+}
+
+.image-slide img {
+  max-height: 100%; 
+  max-width: 100%; 
+  object-fit: contain; 
+}
+
+  
+  
+  .audio-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  
+    button {
+      font-size: 0.9rem;
+      background: linear-gradient(45deg, hsl(59, 100%, 49%), hsl(39, 100%, 59%));
+      color: black;
+      border: 2px solid hsl(59, 100%, 49%);
+      border-radius: 15px;
+      padding: 0.5rem 2rem;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      text-shadow: 0px 0px 5px hsl(59, 100%, 70%);
+      box-shadow: 0 0 15px hsl(59, 100%, 49%);
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background: linear-gradient(45deg, hsl(39, 100%, 59%), hsl(59, 100%, 49%));
+        color: black;
+        text-shadow: 0px 0px 10px hsl(59, 100%, 80%);
+        box-shadow: 0 0 25px hsl(59, 100%, 49%);
+      }
+  
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .carousel-control-prev {
+    left: 150px; /* Ajusta el espacio desde el borde izquierdo */
   }
   
+  .carousel-control-next {
+    right: 150px; /* Ajusta el espacio desde el borde derecho */
+  }
