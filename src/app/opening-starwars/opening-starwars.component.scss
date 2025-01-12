@@ -1,0 +1,48 @@
+.star-wars-opening {
+    height: 100vh;
+    color: hsl(59, 100%, 49%); 
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 500px; 
+  }
+  
+  .crawl {
+    font-size: 2rem; 
+    text-align: center;
+    line-height: 2; 
+    font-family: 'Orbitron', sans-serif;
+    transform-origin: 50% 100%; 
+    transform: rotateX(70deg); /*Inclinación de las letras*/
+    animation: crawl 23s linear infinite; 
+  }
+  
+  @keyframes crawl {
+    0% {
+      transform: translateY(100%) rotateX(29deg) scale(1.9); /* Comienza abajo, más grande */
+      opacity: 1; 
+    }
+    50% {
+      opacity: 0.7; /* Se empieza a desvanecer */
+    }
+    100% {
+      transform: translateY(-100%) rotateX(29deg) scale(0.8); 
+      opacity: 0; 
+    }
+  }
+  
+  #starWarsCarousel {
+    background-color: transparent; 
+    box-shadow: none; 
+  }
+  
+  .carousel-inner {
+    background-color: transparent; 
+  }
+  
+  .carousel-item {
+    background-color: transparent; 
+  }
+  

@@ -1,0 +1,42 @@
+.navbar-custom {
+  position: relative;
+  background: #000000;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  border: 1px solid #888; 
+}
+
+
+
+.navbar-custom .navbar-nav .nav-link {
+  color: #ffffff; 
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  background: rgba(255, 255, 255, 0.1); 
+  border: 1px solid #AAA; 
+  border-radius: 8px;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover,
+.navbar-custom .navbar-nav .nav-link.active {
+  color: #FFFFFF!important;
+  background-color: transparent;
+  text-shadow: 0 0 5px #FFFFFF; 
+  cursor: pointer;
+  border-color: #FFFFFF; 
+}
+
+.navbar-custom .navbar-brand {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.navbar-custom .navbar-toggler {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+}

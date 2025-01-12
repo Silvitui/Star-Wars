@@ -1,0 +1,29 @@
+<div *ngIf="starships().length" class="container mt-4">
+    <div *ngFor="let starship of starships()" class="card mb-3 bg-dark text-white">
+      <div class="card-body">
+        <h3 class="card-title">{{ starship.name }}</h3>
+        <p class="card-text"><strong>Model:</strong> {{ starship.model }}</p>
+        <p class="card-text"><strong>Manufacturer:</strong> {{ starship.manufacturer }}</p>
+        <p class="card-text"><strong>Cargo Capacity:</strong> {{ starship.cargo_capacity }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-center mt-4">
+    <button 
+      class="btn btn-primary me-2" 
+      (click)="loadPage(currentPage() - 1)" 
+      [disabled]="currentPage() === 1">
+      Anterior
+    </button>
+  
+    <span class="align-self-center">Page {{ currentPage() }} of {{ totalPages() }}</span>
+  
+    <button 
+      class="btn btn-primary ms-2" 
+      (click)="loadPage(currentPage() + 1)" 
+      [disabled]="currentPage() === totalPages()">
+      Siguiente
+    </button>
+  </div>
+  

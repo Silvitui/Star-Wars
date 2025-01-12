@@ -1,0 +1,47 @@
+:host {
+    background-color: black;
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  img {
+    width: 20px; 
+    height: 20px;
+  }
+  
+.logo {
+  height: 8rem; 
+  width: auto; 
+}
+
+.logo img {
+  height: 100%; 
+  width: auto;
+}
+
+  
+  button {  
+    color: grey;
+    font-weight: 800;
+    font-size: large;
+  }
+  
+  button:hover {
+    color: #fff!important;
+    background-color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .icon-hover {
+    width: 24px; 
+    height: 24px; 
+    filter: brightness(1.5); /* Aumenta el brillo del icono */
+    transition: transform 0.3s ease-in-out; 
+  }
+  
+  .icon-hover:hover {
+    transform: scale(1.5); 
+    cursor: pointer; 
+  }
+  
