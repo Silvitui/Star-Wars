@@ -1,29 +1,33 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StarWarsService } from '../services/star-wars.service';
-import { Starship } from '../interfaces/starship';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  imports: [CommonModule],
+  standalone:true,
+  imports: [CommonModule,RouterModule],
   selector: 'app-starship-list',
   templateUrl: './starship-list.component.html',
   styleUrls: ['./starship-list.component.scss']
 })
 export class StarshipListComponent implements OnInit {
- starships = signal([] as Starship[]); 
-  totalPages = signal(0); 
-  currentPage = signal(1); 
+  starships!: typeof this.starWarsService.starships;
+  totalPages!: typeof this.starWarsService.totalPages;
+  currentPage!: typeof this.starWarsService.currentPage;
 
-  constructor(private starWarsService: StarWarsService) {}
+  constructor(public starWarsService: StarWarsService) {}
 
   ngOnInit(): void {
-    this.loadPage(1); 
+    this.starships = this.starWarsService.starships;
+    this.totalPages = this.starWarsService.totalPages;
+    this.currentPage = this.starWarsService.currentPage;
+
+    this.loadPage(1);
   }
 
   loadPage(page: number): void {
     if (page >= 1 && page <= this.totalPages()) {
-      this.currentPage.set(page); 
-      this.starWarsService.loadStarships(page);  
+      this.starWarsService.loadStarships(page);
     }
   }
 }

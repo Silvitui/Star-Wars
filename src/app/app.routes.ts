@@ -4,6 +4,7 @@ import { StarshipListComponent } from './starship-list/starship-list.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent }, // Página principal
-    { path: 'starships', component: StarshipListComponent }, // Página de Starships
+    { path: 'starships', loadComponent: () => import('./starship-list/starship-list.component').then(c => c.StarshipListComponent) },
+
     { path: '**', redirectTo: '' }, // Redirección a Home si no encuentra la ruta
 ];
