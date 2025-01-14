@@ -1,0 +1,42 @@
+<div class="starships-container">
+  <h1 class="title">Starships </h1>
+
+
+  <div class="starships-grid">
+    <div class="starship-card" *ngFor="let ship of starships()">
+      <img
+        [src]="getStarshipImageUrl(ship.url)"
+        [alt]="ship.name"
+        class="starship-image"
+      />
+      <div class="starship-info">
+        <h3 class="starship-name">{{ ship.name }}</h3>
+        <p class="starship-model"><strong>Model:</strong> {{ ship.model }}</p>
+        <p class="starship-manufacturer">
+          <strong>Manufacturer:</strong>  {{ ship.manufacturer }}
+        <br><strong>Starship class:</strong> {{ ship.starship_class}}
+        <br><strong>Crew:</strong> {{ship.crew}}
+        <br><strong>Passengers:</strong> {{ship.passengers}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pagination-controls">
+    <button 
+      class="pagination-button" 
+      (click)="loadPage(currentPage() - 1)" 
+      [disabled]="currentPage() <= 1"
+    >
+      Previous
+    </button>
+    <button 
+      class="pagination-button" 
+      (click)="loadPage(currentPage() + 1)" 
+      [disabled]="currentPage() >= totalPages()"
+    >
+      Next
+    </button>
+  </div>
+</div>

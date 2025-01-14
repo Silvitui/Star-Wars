@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { AudioService } from '../services/audioservice.service'; 
+import { AudioService } from '../../services/audioservice.service'; 
 
 @Component({
   selector: 'app-opening-starwars',
@@ -9,7 +9,6 @@ import { AudioService } from '../services/audioservice.service';
 export class OpeningStarwarsComponent {
   constructor(private audioService: AudioService) {}
 
-
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(): void {
     if (!this.audioService.isManuallyPaused && !this.audioService.isPlaying) {
@@ -17,12 +16,13 @@ export class OpeningStarwarsComponent {
     }
   }
 
-
   playMusic(): void {
+    this.audioService.isManuallyPaused = false; 
     this.audioService.playMusic();
   }
 
   pauseMusic(): void {
+    this.audioService.isManuallyPaused = true; 
     this.audioService.pauseMusic();
   }
 }

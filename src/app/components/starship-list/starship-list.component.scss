@@ -1,0 +1,99 @@
+
+
+.starships-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #333;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  
+  color: hsl(220, 15%, 25%);
+}
+
+.starships-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.starship-card {
+  background: white;
+  border: 2px solid hsl(59, 100%, 49%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.starship-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.starship-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 2px solid hsl(59, 100%, 49%);
+}
+
+.starship-info {
+  padding: 1rem;
+  text-align: left;
+}
+
+.starship-name {
+  font-size: 1.5rem;
+  color: hsl(220, 15%, 25%);
+  margin: 0.5rem 0;
+}
+
+.starship-model,
+.starship-manufacturer {
+  font-size: 1rem;
+  margin: 0.2rem 0;
+  color: hsl(220, 10%, 40%);
+}
+
+
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination-button {
+  background-color: hsl(220, 15%, 20%);
+  color: hsl(59, 100%, 80%);
+  border: 2px solid hsl(59, 100%, 50%);
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-button:hover:not([disabled]) {
+  background-color: hsl(59, 100%, 40%);
+  transform: scale(1.05);
+}
+
+.pagination-button:disabled {
+  background-color: hsl(220, 15%, 15%);
+  color: hsl(0, 0%, 50%);
+  border-color: hsl(0, 0%, 50%);
+  cursor: not-allowed;
+}

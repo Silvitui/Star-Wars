@@ -9,11 +9,9 @@ export class AudioService {
   isManuallyPaused: any;
 
   playMusic(): void {
-    this.audio.play().then(() => {
-      this.isPlaying = true;
-    }).catch(err => {
-      console.warn("The browser blocked autoplay", err);
-    });
+    this.audio.play();
+    this.isPlaying = true;
+    this.isManuallyPaused = false; 
   }
 
   pauseMusic(): void {

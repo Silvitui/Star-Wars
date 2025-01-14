@@ -6,7 +6,7 @@ export interface Starship {
     cost_in_credits: string;
     length: string
     crew:string;
-    passengetrs:string;
+    passengers:string;
     max_atmosphering_speed:string;
     hyperdrive_rating:string;
     MGLT: string;
@@ -22,8 +22,8 @@ export interface Starship {
 
 export interface StarshipApiResponse {
     count: number;
-    next: string;
-    previous?: string;
+    next: string | null;
+    previous: string | null;
     results: Starship[];
   }
   
