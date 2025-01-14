@@ -8,44 +8,44 @@ import { Starship } from '../../interfaces/starship';
   selector: 'app-starship-list',
   templateUrl: './starship-list.component.html',
   styleUrls: ['./starship-list.component.scss'],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class StarshipListComponent implements OnInit {
-  starships = signal<Starship[]>([]);
-  totalPages = signal<number>(0);
-  currentPage = signal<number>(1);
+  starships = signal<Starship[]>([]); 
+  isLoading = signal(false); 
+  noMoreData = signal(false); 
   defaultImage = 'assets/star1.jpeg'; 
 
   constructor(private starWarsService: StarWarsService) {}
 
   ngOnInit(): void {
-    this.loadPage(this.currentPage());
+    this.loadMore(); 
   }
 
-  loadPage(page: number): void {
-    this.starWarsService.getStarships(page).subscribe({
+  loadMore(): void {
+    if (this.isLoading() || this.noMoreData()) return; 
+
+    this.isLoading.set(true);
+
+    this.starWarsService.getStarships().subscribe({
       next: (response) => {
-        this.starships.set(response.results);
-        this.totalPages.set(Math.ceil(response.count / 10));
-        this.currentPage.set(page);
+        const currentStarships = this.starships();
+        this.starships.set([...currentStarships, ...response.results]);
+
+        if (!response.next) {
+          this.noMoreData.set(true); 
+        }
       },
       error: (error) => {
-        console.error('Error al cargar datos de Starships:', error);
-      }
+        console.error('Error al cargar más naves:', error);
+      },
+      complete: () => {
+        this.isLoading.set(false);
+      },
     });
-  }
-  getImageUrl(imageUrl: string | null | undefined): string {
-    if (!imageUrl) {
-      return this.defaultImage; 
-    }
-    return imageUrl 
   }
 
   getStarshipImageUrl(url: string): string {
     return this.starWarsService.getStarshipImageUrl(url);
   }
-
-  
-
-  
 }

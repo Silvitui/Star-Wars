@@ -4,9 +4,20 @@
 @import 'bootstrap/scss/bootstrap';
 
 @font-face {
-    font-family: 'StarJedi'; /* Nombre de la fuente */
+    font-family: 'StarJedi'; 
     src: url('/assets/Starjedi.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
   }
-
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  main {
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+  }
+  

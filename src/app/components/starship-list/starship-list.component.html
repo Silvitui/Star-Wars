@@ -1,42 +1,23 @@
-<div class="starships-container">
-  <h1 class="title">Starships </h1>
-
-
-  <div class="starships-grid">
-    <div class="starship-card" *ngFor="let ship of starships()">
-      <img
-        [src]="getStarshipImageUrl(ship.url)"
-        [alt]="ship.name"
-        class="starship-image"
-      />
-      <div class="starship-info">
-        <h3 class="starship-name">{{ ship.name }}</h3>
-        <p class="starship-model"><strong>Model:</strong> {{ ship.model }}</p>
-        <p class="starship-manufacturer">
-          <strong>Manufacturer:</strong>  {{ ship.manufacturer }}
-        <br><strong>Starship class:</strong> {{ ship.starship_class}}
-        <br><strong>Crew:</strong> {{ship.crew}}
-        <br><strong>Passengers:</strong> {{ship.passengers}}
-        </p>
-      </div>
+<div class="container mt-5 mb-5">
+  <div class="row d-flex align-items-center">
+    <div
+      *ngFor="let starship of starships()"
+      class=" text-start pt-3 pb-3 border border-rounded card my-2 col-9 mx-auto"
+    >
+      <h4 class="fw-bold">{{ starship.name.toUpperCase() }}</h4>
+      <h5 >{{ starship.model }}</h5>
     </div>
   </div>
 
 
-  <div class="pagination-controls">
-    <button 
-      class="pagination-button" 
-      (click)="loadPage(currentPage() - 1)" 
-      [disabled]="currentPage() <= 1"
-    >
-      Previous
+  <div class="text-center my-3" *ngIf="!noMoreData()">
+    <button class="btn-view-more m-4" [disabled]="isLoading()" (click)="loadMore()">
+      {{ isLoading() ? 'Loading...' : 'View More' }}
     </button>
-    <button 
-      class="pagination-button" 
-      (click)="loadPage(currentPage() + 1)" 
-      [disabled]="currentPage() >= totalPages()"
-    >
-      Next
-    </button>
+  </div>
+
+ 
+  <div class="text-center my-3 " *ngIf="noMoreData()">
+    <p class="custom-text mb-5">No more starships to show.</p>
   </div>
 </div>
