@@ -24,7 +24,7 @@ export class StarshipListComponent implements OnInit {
 
   loadPage(page: number): void {
     this.starWarsService.getStarships(page).subscribe({
-      next: (response) => {
+      next: (response: { results: Starship[]; count: number; }) => {
         this.starships.set(response.results);
         this.totalPages.set(Math.ceil(response.count / 10));
         this.currentPage.set(page);
@@ -34,12 +34,7 @@ export class StarshipListComponent implements OnInit {
       }
     });
   }
-  getImageUrl(imageUrl: string | null | undefined): string {
-    if (!imageUrl) {
-      return this.defaultImage; 
-    }
-    return imageUrl 
-  }
+
 
   getStarshipImageUrl(url: string): string {
     return this.starWarsService.getStarshipImageUrl(url);

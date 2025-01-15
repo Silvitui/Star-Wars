@@ -11,26 +11,27 @@ import { catchError, tap, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class StarWarsService {
-  private apiUrl = 'https://swapi.py4e.com/api/starships';
+  private baseUrl = 'https://swapi.py4e.com/api';
+  private starshipsUrl = `${this.baseUrl}/starships`;
   starships = signal<Starship[]>([]);
   totalPages = signal<number>(0);
   currentPage = signal<number>(1);
+  defaultImage = 'assets/star1.jpeg';
 
   constructor(private http: HttpClient) {}
 
-getStarships(page: number = 1): Observable<StarshipApiResponse> {
-  return this.http.get<StarshipApiResponse>(`${this.apiUrl}/?page=${page}`).pipe(
-    tap((response) => {
-      this.starships.set(response.results);
-      this.totalPages.set(Math.ceil(response.count / 10));
-    }),
-    catchError((err) => {
-      console.error('Error al obtener los datos:', err);
-      return throwError(() => err);
-    })
-  );
-}
-
+  getStarships(page: number = 1): Observable<StarshipApiResponse> {
+    return this.http.get<StarshipApiResponse>(`${this.starshipsUrl}/?page=${page}`).pipe(
+      tap((response) => {
+        this.starships.set(response.results);
+        this.totalPages.set(Math.ceil(response.count / 10));
+      }),
+      catchError((err) => {
+        console.error('Error al obtener los datos:', err);
+        return throwError(() => err);
+      })
+    );
+  }
 
   getStarshipImageUrl(url: string): string {
     const id = url.split('/').filter((segment) => segment).pop();
@@ -38,14 +39,14 @@ getStarships(page: number = 1): Observable<StarshipApiResponse> {
   }
 
   getStarshipDetails(id: string): Observable<Starship> {
-    return this.http.get<Starship>(`${this.apiUrl}/starships/${id}`);
-  } 
+    return this.http.get<Starship>(`${this.starshipsUrl}/${id}`);
+  }
 
   getPilotDetails(url: string): Observable<People> {
     return this.http.get<People>(url);
   }
 
-  getFilmDetails(url: string): Observable<Film>{
+  getFilmDetails(url: string): Observable<Film> {
     return this.http.get<Film>(url);
-  } 
+  }
 }

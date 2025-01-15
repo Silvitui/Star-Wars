@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
+import { OpeningStarwarsComponent } from "../opening-starwars/opening-starwars.component";
+import { StarshipListComponent } from "../starship-list/starship-list.component";
 
 @Component({
-  imports: [HeaderComponent,RouterOutlet],
+  imports: [HeaderComponent, RouterOutlet, OpeningStarwarsComponent, StarshipListComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
