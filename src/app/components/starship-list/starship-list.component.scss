@@ -3,32 +3,4 @@
   font-family: 'Orbitron', sans-serif;
 }
 
-.card {
-  background-color: #151515;
-  color: #8B8B8B;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
- 
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-view-more {
-  background-color:#ffe137;
-  font-size: 0.9rem;
-  color: black;
-  border-radius: 45px;
-  padding: 0.5rem 2rem;
-  cursor: pointer;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-
-
-
-}
-.custom-text {
-  color: #ffe137
-}
 

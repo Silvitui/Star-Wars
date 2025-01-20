@@ -6,10 +6,11 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
+  imports: [CommonModule],
   selector: 'app-starship-list',
   templateUrl: './starship-list.component.html',
   styleUrls: ['./starship-list.component.scss'],
-  imports: [CommonModule, RouterLink],
+  
 })
 export class StarshipListComponent implements OnInit {
   private starwarsService = inject(StarWarsService);

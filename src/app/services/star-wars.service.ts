@@ -25,6 +25,12 @@ export class StarWarsService {
   }
 
   getById(id: string): Observable<Starship> {
-    return this.httpClient.get<Starship>(`${this.url}/${id}/`); 
+    return this.httpClient.get<Starship>(`https://swapi.dev/api/starships/${id}/`).pipe(
+      map((starship) => ({
+        ...starship,
+        imageUrl: `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`, 
+      }))
+    );
   }
+  
 }

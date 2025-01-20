@@ -39,4 +39,8 @@ export class StarshipDetailsComponent implements OnInit {
   goBack() {
     this.router.navigate(["/starships"]); 
   }
+  onImageError(event: Event) {
+    (event.target as HTMLImageElement).src = '/assets/nave.jpg';
+  }
+  
 }
