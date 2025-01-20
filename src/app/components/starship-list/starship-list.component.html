@@ -1,23 +1,16 @@
-<div class="container mt-5 mb-5">
-  <div class="row d-flex align-items-center">
-    <div
-      *ngFor="let starship of starships()"
-      class=" text-start pt-3 pb-3 border border-rounded card my-2 col-9 mx-auto"
-    >
-      <h4 class="fw-bold">{{ starship.name.toUpperCase() }}</h4>
-      <h5 >{{ starship.model }}</h5>
-    </div>
-  </div>
-
-
-  <div class="text-center my-3" *ngIf="!noMoreData()">
-    <button class="btn-view-more m-4" [disabled]="isLoading()" (click)="loadMore()">
-      {{ isLoading() ? 'Loading...' : 'View More' }}
-    </button>
-  </div>
-
- 
-  <div class="text-center my-3 " *ngIf="noMoreData()">
-    <p class="custom-text mb-5">No more starships to show.</p>
-  </div>
-</div>
+<div class="container mt-4">
+    @if(starships.length > 0) {
+        <div class="d-flex flex-column align-items-center">
+            @for(starship of starships; track starship.id) {
+                <div 
+                    class="w-75 p-3 bg-dark text-light rounded mb-3" 
+                    *ngIf="starship.id" 
+                    (click)="goToDetails(starship.id)" 
+                    style="cursor: pointer;"
+                >
+                    <h5 class="text-uppercase fw-bold ">{{ starship.name }}</h5>
+                    <p class="text-secondary m-0">{{ starship.model }}</p>
+                </div>
+            }
+        </div>
+    }

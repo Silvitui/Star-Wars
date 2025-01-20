@@ -1,51 +1,35 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StarWarsService } from '../../services/star-wars.service';
 import { Starship } from '../../interfaces/starship';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-starship-list',
   templateUrl: './starship-list.component.html',
   styleUrls: ['./starship-list.component.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
 })
 export class StarshipListComponent implements OnInit {
-  starships = signal<Starship[]>([]); 
-  isLoading = signal(false); 
-  noMoreData = signal(false); 
-  defaultImage = 'assets/star1.jpeg'; 
+  private starwarsService = inject(StarWarsService);
+  private router = inject(Router); 
 
-  constructor(private starWarsService: StarWarsService) {}
+  starships: Starship[] = [];
 
   ngOnInit(): void {
-    this.loadMore(); 
-  }
-
-  loadMore(): void {
-    if (this.isLoading() || this.noMoreData()) return; 
-
-    this.isLoading.set(true);
-
-    this.starWarsService.getStarships().subscribe({
-      next: (response) => {
-        const currentStarships = this.starships();
-        this.starships.set([...currentStarships, ...response.results]);
-
-        if (!response.next) {
-          this.noMoreData.set(true); 
-        }
+    this.starwarsService.getStarships().subscribe({
+      next: (data) => {
+        this.starships = data.results;
+        console.log('Starships:', this.starships);
       },
       error: (error) => {
-        console.error('Error al cargar más naves:', error);
-      },
-      complete: () => {
-        this.isLoading.set(false);
-      },
+        console.error('Error fetching starships:', error);
+      }
     });
   }
 
-  getStarshipImageUrl(url: string): string {
-    return this.starWarsService.getStarshipImageUrl(url);
+  goToDetails(id: string) {
+    this.router.navigate(['starships', id]); 
   }
 }
