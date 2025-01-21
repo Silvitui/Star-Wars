@@ -3,34 +3,56 @@ import { CommonModule } from '@angular/common';
 import { StarWarsService } from '../../services/star-wars.service';
 import { Starship } from '../../interfaces/starship';
 import { Router, RouterLink } from '@angular/router';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
   selector: 'app-starship-list',
   templateUrl: './starship-list.component.html',
   styleUrls: ['./starship-list.component.scss'],
-  
+  imports: [CommonModule, InfiniteScrollDirective],
 })
 export class StarshipListComponent implements OnInit {
   private starwarsService = inject(StarWarsService);
-  private router = inject(Router); 
-
-  starships: Starship[] = [];
+  private router = inject(Router);
+  public starships: Starship[] = [];
+  public currentPage = 1;
+  public isLoading = false;
+  public hasMoreData = true; 
 
   ngOnInit(): void {
-    this.starwarsService.getStarships().subscribe({
+    window.scrollTo(0, 0);
+    
+    this.loadStarships();
+  }
+
+  loadStarships(): void {
+    if (this.isLoading || !this.hasMoreData) return;
+
+    this.isLoading = true;
+
+    this.starwarsService.getStarships(this.currentPage).subscribe({
       next: (data) => {
-        this.starships = data.results;
-        console.log('Starships:', this.starships);
+        if (data.results.length === 0) {
+          this.hasMoreData = false; 
+        } else {
+          this.starships = [...this.starships, ...data.results]; 
+          this.currentPage++; 
+        }
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error fetching starships:', error);
-      }
+        this.isLoading = false;
+      },
     });
   }
 
-  goToDetails(id: string) {
-    this.router.navigate(['starships', id]); 
+  onScroll(): void {
+    this.loadStarships();
+  }
+
+  goToDetails(id: string): void {
+    this.router.navigate(['starships', id]);
   }
 }

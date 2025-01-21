@@ -1,0 +1,31 @@
+
+  .pilots-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .pilot-card {
+    background: #222;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+  }
+  
+  .pilot-img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+
+  .pilot-name {
+    font-size: 1rem;
+    color: white;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  

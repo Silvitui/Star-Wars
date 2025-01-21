@@ -12,9 +12,10 @@ export interface People {
     films:string[];
     starships: string[];
     vehicles: string[];
-    urls: string;
+    url: string;
     created: string;
     edited:string;
+    imageUrl?:string;
     
 
 

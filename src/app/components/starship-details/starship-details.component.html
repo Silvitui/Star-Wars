@@ -1,17 +1,18 @@
 <div class="container mt-5">
     @if (starship) {
       <h1 class="text-light text-uppercase border-bottom pb-2">Starship</h1>
-      <div class="row mt-4">
+      <div class="row mt-3 ">
         <div class="col-md-6">
-          <img [src]="starship.imageUrl || '/assets/nave.jpg'" alt="{{ starship.name }}" class="img-fluid rounded border" (error)="onImageError($event)">
+          <img [src]="starship.imageUrl || '/assets/nave.jpg'" alt="{{ starship.name }}" class="img-fluid rounded border " (error)="onImageError($event)">
         </div>
         <div class="col-md-6">
           <div class="bg-dark text-light p-4 rounded border border-secondary">
             <h3 class="text-uppercase text-ligth border-bottom pb-2">{{ starship.name }}</h3>
             <p class="text-secondary">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum voluptate repellat vero recusandae perspiciatis libero voluptas, fuga consectetur dolor!
+              The <b>{{ starship.name }}</b>, a {{ starship.starship_class }} built by {{ starship.manufacturer }}, 
+              reaches speeds of {{ starship.max_atmosphering_speed }} and carries a crew of {{ starship.crew }}. 
+              Powered by a {{ starship.hyperdrive_rating }} hyperdrive, it can endure {{ starship.consumables }} across the galaxy.
             </p>
-  
             <div class="d-flex flex-wrap">
               <div class="w-50">
                 <p><b>Model:</b> {{ starship.model }}</p>
@@ -31,4 +32,12 @@
       <h3 class="text-danger text-center mt-5">Starship not found</h3>
     }
   </div>
+  @if (starship) {
+    <div class="container">
+      <app-pilots [pilotUrls]="starship.pilots"></app-pilots>
+      <app-films [filmUrls]="starship.films"></app-films>
+    </div>
+  }
+  
+
   

@@ -1,0 +1,12 @@
+<h2 class="text-light  border-bottom pb-2">Films</h2>
+<div class="films-container">
+  @for (film of films; track film.title) {
+    <div class="film-card">
+      <img [src]="film.imageUrl" alt="{{ film.title }}" class="film-img">
+      <div class="film-info">
+        <p class="film-title">{{ film.title }}</p>
+        <p class="film-episode">Episode {{ film.episode_id }}</p>
+      </div>
+    </div>
+  }
+</div>

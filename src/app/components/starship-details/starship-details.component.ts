@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { StarWarsService } from '../../services/star-wars.service';
 import { Starship } from '../../interfaces/starship';
+import { FilmsComponent } from "../films/films.component";
+import { PilotsComponent } from "../pilots/pilots.component";
 
 @Component({
   standalone: true,
   selector: 'app-starship-details',
   templateUrl: './starship-details.component.html',
   styleUrls: ['./starship-details.component.scss'],
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, FilmsComponent, PilotsComponent],
 })
 export class StarshipDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);

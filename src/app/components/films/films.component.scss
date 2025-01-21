@@ -1,0 +1,49 @@
+.section-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ffff;
+    padding-bottom: 4px;
+    margin: 20px 0;
+    color: #ffff;
+  }
+
+
+.films-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .film-card {
+    width: 300px;
+    text-align: center;
+    background: #222;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+
+  
+  .film-img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .film-info {
+    margin-top: 10px;
+  }
+  
+  .film-title {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .film-episode {
+    font-size: 0.9rem;
+    color: #ffcc00;
+  }
+  

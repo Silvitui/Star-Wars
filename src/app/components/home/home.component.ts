@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 
+
 @Component({
   standalone: true,
-  imports: [HeaderComponent, RouterOutlet], // ✅ Solo los necesarios
+  imports: [HeaderComponent, RouterOutlet],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']

@@ -13,6 +13,7 @@ export interface Film {
     url:string;
     created:string;
     edited:string;   
+    imageUrl?:string;
 
 
 

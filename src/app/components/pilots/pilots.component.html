@@ -1,0 +1,9 @@
+<h2 class="text-light  border-bottom pb-2">Pilots</h2>
+<div class="pilots-container">
+  @for (pilot of pilots; track pilot.name) {
+    <div class="pilot-card">
+      <img [src]="pilot.imageUrl" alt="{{ pilot.name }}" class="pilot-img">
+      <p class="pilot-name">{{ pilot.name }}</p>
+    </div>
+  }
+</div>
