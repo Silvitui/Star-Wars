@@ -1,0 +1,61 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
+
+* {
+  font-family: 'Exo 2', sans-serif;
+}
+
+$primary-color: #ffcc00;
+$dark-bg: #000;
+.logo {
+    height: 8rem;
+    margin-top: 45px;
+    margin-bottom: 0px;
+    text-align: center; 
+  }
+  
+  .logo img {
+    height: 80%;
+  }
+  
+  .register-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 35px;
+    width: 550px;
+    height: 600px;
+    text-align: center;
+    margin: auto; 
+    margin-top: 0px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 15px;  
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-continue {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    background: $primary-color;
+    color: $dark-bg;
+    transition: 0.3s ease-in-out;
+    margin-top: 30px;
+  
+    &:hover {
+      background: darken($primary-color, 10%);
+    }
+  }
+  

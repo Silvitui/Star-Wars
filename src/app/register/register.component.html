@@ -1,1 +1,44 @@
-<p>register works!</p>
+<div class="d-flex justify-content-center mt-3">
+    <div class="logo text-center">
+      <img src="/assets/logo.webp" alt="LogoStarWars" class="small-logo" />
+    </div>
+  </div>
+  <button class="close-button" (click)="goBack()">✖</button>
+  <div class="container mt-4 ">
+    <div class="row justify-content-center">
+      <div class="col-md-6 mx-auto">
+        <div class="register-card ">
+          <img src="/assets/disney.svg" alt="LogoDisney" class="logoDisney" />
+          <h2 class="fw-bold mb-1">Register </h2>
+  
+          <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+            <div class="mb-3 text-start">
+              <label class="form-label">Full Name</label>
+              <input type="text" formControlName="fullName" class="form-control" [ngClass]="{'is-invalid': registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched}">
+              <div class="invalid-feedback" *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
+                Must be at least 3 characters.
+              </div>
+            </div>
+  
+            <div class="mb-3 text-start">
+              <label class="form-label">Email</label>
+              <input type="email" formControlName="email" class="form-control" [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
+              <div class="invalid-feedback" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                Must be a valid email.
+              </div>
+            </div>
+  
+            <div class="mb-3 text-start">
+              <label class="form-label">Password</label>
+              <input type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
+              <div class="invalid-feedback" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                Password must be at least 6 characters.
+              </div>
+            </div>
+  
+            <button type="submit" class="btn-continue">Sign Up Now!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

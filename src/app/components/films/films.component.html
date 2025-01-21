@@ -1,5 +1,5 @@
 <h2 class="text-light  border-bottom pb-2">Films</h2>
-<div class="films-container">
+<div class="films-container mb-5">
   @for (film of films; track film.title) {
     <div class="film-card">
       <img [src]="film.imageUrl" alt="{{ film.title }}" class="film-img">
