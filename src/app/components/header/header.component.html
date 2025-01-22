@@ -44,11 +44,15 @@
       class="col-lg-4 col-12 d-flex justify-content-lg-end justify-content-center"
     >
       <div>
+        @if (!user) {
         <button class="btn" (click)="goToLogin()">LOGIN</button>
-
+        }
       </div>
       <div>
-        <button class="btn">LOGOUT</button>
+        @if (user) {
+          <p class="user-name">Welcome Jedi!</p>
+        <button class="btn" (click)="logout()">LOGOUT</button>
+        }
       </div>
     </div>
   </div>

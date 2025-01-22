@@ -1,71 +1,86 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, UserCredential, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from '@angular/fire/auth';
+import {Auth, UserCredential, signInWithEmailAndPassword, createUserWithEmailAndPassword,signOut,signInWithPopup,GoogleAuthProvider,onAuthStateChanged} from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { from, Observable, of } from 'rxjs';
+import { from, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User, Login, AuthResponse } from '../interfaces/users'; 
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private auth = inject(Auth);
-  private router = inject(Router);
   private user: Observable<User | null>;
 
   constructor() {
     this.user = new Observable((observer) => {
-      onAuthStateChanged(this.auth, (user) => {
-        if (user) {
-          observer.next({ fullName: user.displayName || '', email: user.email || '', password: '' }); 
-        } else {
+      onAuthStateChanged(this.auth, (fbUser) => {
+        if (fbUser) {
+
+          observer.next({
+            fullName: fbUser.displayName || '',
+            email: fbUser.email || '',
+            password: ''
+          }); 
+        } else {  
+
           observer.next(null);
         }
       });
     });
   }
 
-
-  register(user: User): Observable<AuthResponse> {
+  register(user: User): Observable<User> {
     return from(createUserWithEmailAndPassword(this.auth, user.email, user.password)).pipe(
       map((userCredential) => ({
-        accessToken: '',
-        user: {
-          email: userCredential.user.email || '',
-          id: userCredential.user.uid.length, 
-        }
+        email: userCredential.user.email || '',
+        fullName: user.fullName, 
+        password: '' 
       })),
       catchError((error) => {
-        console.error('Error en el registro:', error);
-        throw error;
+        let errorMessage = "Something went wrong. Please try again.";
+        if (error.code === 'auth/email-already-in-use') {
+          errorMessage = "This email is already registered. Try logging instead.";
+        }
+
+        return throwError(() => new Error(errorMessage)); 
       })
     );
   }
-
- 
   login(credentials: Login): Observable<AuthResponse> {
     return from(signInWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
       map((userCredential) => ({
-        accessToken: '',
         user: {
           email: userCredential.user.email || '',
-          id: userCredential.user.uid.length, 
+          id: userCredential.user.uid
         }
       })),
       catchError((error) => {
-        console.error('Error en el login:', error);
-        throw error;
+        let errorMessage = 'Something went wrong. Please try again.';
+        switch (error.code) {
+          case 'auth/invalid-credential': 
+            errorMessage = 'Invalid email or password. Please try again.';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'Invalid email format.';
+            break;
+          case 'auth/network-request-failed':
+            errorMessage = 'Network error. Please check your internet connection.';
+            break;
+          default:
+            errorMessage = `Unexpected error: ${error.message}`;
+            break;
+        }
+  
+        return throwError(() => new Error(errorMessage));
       })
     );
   }
-
-
   loginWithGoogle(): Observable<AuthResponse> {
     const provider = new GoogleAuthProvider();
     return from(signInWithPopup(this.auth, provider)).pipe(
       map((userCredential) => ({
-        accessToken: '',
         user: {
           email: userCredential.user.email || '',
-          id: userCredential.user.uid.length,
+          id: userCredential.user.uid
         }
       })),
       catchError((error) => {
@@ -74,8 +89,6 @@ export class AuthService {
       })
     );
   }
-
-
   logout(): Observable<void> {
     return from(signOut(this.auth)).pipe(
       catchError((error) => {
@@ -84,13 +97,7 @@ export class AuthService {
       })
     );
   }
-
   get currentUser(): Observable<User | null> {
     return this.user;
-  }
-
-  async getToken(): Promise<string | null> {
-    if (!this.auth.currentUser) return null;
-    return await this.auth.currentUser.getIdToken();
   }
 }

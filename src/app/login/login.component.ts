@@ -34,8 +34,8 @@ export class LoginComponent {
     this.authService.login(this.credentials).subscribe({
       next: () => this.router.navigate([this.returnUrl]),
       error: (error) => {
-        console.error('Error en el login:', error);
-        this.errorMessage = 'Error al iniciar sesión.';
+
+        this.errorMessage = error.message;
       },
     });
   }

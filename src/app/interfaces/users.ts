@@ -10,10 +10,9 @@ export interface User {
   }
   
   export interface AuthResponse {
-    accessToken: string;
     user: {
       email: string;
-      id: number;
+      id: string;
     };
   }
   

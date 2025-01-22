@@ -37,6 +37,9 @@
             </div>
   
             <button type="submit" class="btn-continue">Sign Up Now!</button>
+            @if (errorMessage) {
+              <p class="error-message">{{ errorMessage }}</p>
+            }
           </form>
         </div>
       </div>

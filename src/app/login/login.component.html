@@ -5,35 +5,49 @@
 </div>
 <div class="login-container">
   <button class="close-button" (click)="goBack()">✖</button>
-    <div class="login-card">
-      <img src="/assets/disney.svg" alt="LogoDisney" class="logoDisney" />
+  <div class="login-card">
+    <img src="/assets/disney.svg" alt="LogoDisney" class="logoDisney" />
 
-  
-      <h2 class="title">Enter your email to continue</h2>
-      <p class="description">
-        Log in to Star Wars with your MyDisney account. If you don't have one, you will be prompted to create one.
+    <h2 class="title">Enter your email to continue</h2>
+    <p class="description">
+      Log in to Star Wars with your MyDisney account. If you don't have one, you
+      will be prompted to create one.
+    </p>
+
+    <form (ngSubmit)="login()">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="credentials.email"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="credentials.password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-continue">Continue</button>
+      @if (errorMessage) {
+      <p class="error-message">{{ errorMessage }}</p>
+      }
+      <button type="button" class="btn-google" (click)="loginWithGoogle()">
+        <img src="/assets/google.png" class="google-icon" />
+        Continue with Google
+      </button>
+
+      <p class="register-text">
+        Don't have an account? <a [routerLink]="'/register'">Sign up here</a>
       </p>
-  
-      <form (ngSubmit)="login()">
-        <div class="input-group">
-          <label for="email">Email</label>
-          <input type="email" id="email"name="email" [(ngModel)]="credentials.email" required>
-        </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password"name="password" [(ngModel)]="credentials.password" required>
-        </div>
-  
-        <!-- Botón Login -->
-        <button type="submit" class="btn-continue">Continue</button>
-  
-    
-  
-        <!-- Link para Registrarse -->
-        <p class="register-text">
-          Don't have an account? <a [routerLink]='"/register"'>Sign up here</a>
-        </p>
-      </form>
-    </div>
+    </form>
   </div>
-  
+</div>
