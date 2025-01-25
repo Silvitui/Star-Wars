@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import {Auth, UserCredential, signInWithEmailAndPassword, createUserWithEmailAndPassword,signOut,signInWithPopup,GoogleAuthProvider,onAuthStateChanged} from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { from, Observable, throwError } from 'rxjs';
+import { Auth, UserCredential, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from '@angular/fire/auth';
+import { Observable, from, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User, Login, AuthResponse } from '../interfaces/users'; 
 
@@ -9,19 +8,19 @@ import { User, Login, AuthResponse } from '../interfaces/users';
 export class AuthService {
   private auth = inject(Auth);
   private user: Observable<User | null>;
-
   constructor() {
-    this.user = new Observable((observer) => {
+    this.user = this.listenToAuthChanges(); 
+  }
+  private listenToAuthChanges(): Observable<User | null> {
+    return new Observable((observer) => {
       onAuthStateChanged(this.auth, (fbUser) => {
         if (fbUser) {
-
           observer.next({
             fullName: fbUser.displayName || "",
             email: fbUser.email || "",
-            password: ""
+            password: "" 
           }); 
         } else {  
-
           observer.next(null);
         }
       });
@@ -40,11 +39,11 @@ export class AuthService {
         if (error.code === "auth/email-already-in-use") {
           errorMessage = "This email is already registered. Try logging instead.";
         }
-
         return throwError(() => new Error(errorMessage)); 
       })
     );
   }
+
   login(credentials: Login): Observable<AuthResponse> {
     return from(signInWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
       map((userCredential) => ({
@@ -69,11 +68,11 @@ export class AuthService {
             errorMessage = `Unexpected error: ${error.message}`;
             break;
         }
-  
         return throwError(() => new Error(errorMessage));
       })
     );
   }
+
   loginWithGoogle(): Observable<AuthResponse> {
     const provider = new GoogleAuthProvider();
     return from(signInWithPopup(this.auth, provider)).pipe(
@@ -89,6 +88,7 @@ export class AuthService {
       })
     );
   }
+
   logout(): Observable<void> {
     return from(signOut(this.auth)).pipe(
       catchError((error) => {
@@ -97,6 +97,7 @@ export class AuthService {
       })
     );
   }
+
   get currentUser(): Observable<User | null> {
     return this.user;
   }
