@@ -49,7 +49,7 @@ export class AuthService {
       map((userCredential) => ({
         user: {
           email: userCredential.user.email || '',
-          id: userCredential.user.uid
+          id: userCredential.user.uid,
         }
       })),
       catchError((error) => {

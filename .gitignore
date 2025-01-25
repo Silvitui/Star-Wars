@@ -7,10 +7,11 @@
 /bazel-out
 
 # Node
+environments.ts
 /node_modules
 npm-debug.log
 yarn-error.log
-environments.ts
+
 
 # IDEs and editors
 .idea/

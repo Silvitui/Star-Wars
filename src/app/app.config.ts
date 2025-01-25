@@ -6,7 +6,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { importProvidersFrom } from '@angular/core';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
-import { environment } from './environments/environments';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -1,3 +1,10 @@
+## 🎥 Demo
+
+![Demo](public/assets/starvideo.gif)
+
+
+
+
 # 🚀 Star Wars Starships App (Angular)
 
 ## 📌 Project Overview
@@ -42,6 +49,29 @@ cd Star-Wars
 ```sh
 npm install
 ```
+
+## 🔑 Firebase Configuration
+
+To prevent exposing sensitive credentials, this project uses an **`environment.ts`** file that is NOT included in the repository.  
+Follow these steps to configure it:
+
+1️⃣ **Create the file** `src/environments/environment.ts` in the project root.  
+2️⃣ **Copy and paste the following code, replacing it with your Firebase credentials:**
+
+```ts
+export const environment = {
+  production: false,
+  firebaseConfig: {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
+  }
+};
+
 
 ### **3️⃣ Run the development server**
 ```sh

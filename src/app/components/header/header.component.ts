@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth-service.service';
 import { Auth, onAuthStateChanged, signOut, User } from '@angular/fire/auth';
+import { Login } from '../../interfaces/users';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,8 @@ export class HeaderComponent {
   private auth = inject(Auth);
   private router = inject(Router);
   user: User | null = null;
+
+
   
 
   constructor() {
