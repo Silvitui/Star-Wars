@@ -1,14 +1,19 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
 
-* {
-  font-family: 'Exo 2', sans-serif;
-}
-
 $primary-color: #ffcc00;
 $dark-bg: #000;
 $white: #fff;
 $gray: #e1e1e1;
+
+* {
+  font-family: 'Exo 2', sans-serif;
+}
+
+.login-card {
+  margin-bottom: 50px; 
+}
+
 
 .logo {
   height: 8rem; 
@@ -55,7 +60,7 @@ $gray: #e1e1e1;
   margin-bottom: 15px;
 
   label {
-    display: block;
+   
     font-weight: bold;
     font-size: 0.9rem;
     color: #333;

@@ -54,6 +54,11 @@
         <button class="btn" (click)="logout()">LOGOUT</button>
         }
       </div>
+      <div>
+        @if (!user) {
+        <button class="btn" (click)="goToSignUp()">SIGN UP</button>
+        }
+      </div>
     </div>
   </div>
 </div>

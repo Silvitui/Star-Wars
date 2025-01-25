@@ -33,4 +33,7 @@ export class HeaderComponent {
       this.router.navigate(['/']);
     }).catch(error => error);
   }
+  goToSignUp() {
+    this.router.navigate(['/register']); 
+  }
 }

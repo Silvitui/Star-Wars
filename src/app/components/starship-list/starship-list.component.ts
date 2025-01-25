@@ -1,9 +1,14 @@
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+
+
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StarWarsService } from '../../services/star-wars.service';
 import { Starship } from '../../interfaces/starship';
 import { Router, RouterLink } from '@angular/router';
-import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+
+
+
 
 @Component({
   standalone: true,

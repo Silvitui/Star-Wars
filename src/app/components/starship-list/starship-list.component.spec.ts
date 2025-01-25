@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StarshipListComponent } from './starship-list.component';
 
 describe('StarshipListComponent', () => {
@@ -8,9 +7,8 @@ describe('StarshipListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StarshipListComponent]
-    })
-    .compileComponents();
+      imports: [StarshipListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StarshipListComponent);
     component = fixture.componentInstance;

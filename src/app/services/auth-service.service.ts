@@ -16,9 +16,9 @@ export class AuthService {
         if (fbUser) {
 
           observer.next({
-            fullName: fbUser.displayName || '',
-            email: fbUser.email || '',
-            password: ''
+            fullName: fbUser.displayName || "",
+            email: fbUser.email || "",
+            password: ""
           }); 
         } else {  
 
@@ -31,13 +31,13 @@ export class AuthService {
   register(user: User): Observable<User> {
     return from(createUserWithEmailAndPassword(this.auth, user.email, user.password)).pipe(
       map((userCredential) => ({
-        email: userCredential.user.email || '',
+        email: userCredential.user.email || "",
         fullName: user.fullName, 
-        password: '' 
+        password: "" 
       })),
       catchError((error) => {
         let errorMessage = "Something went wrong. Please try again.";
-        if (error.code === 'auth/email-already-in-use') {
+        if (error.code === "auth/email-already-in-use") {
           errorMessage = "This email is already registered. Try logging instead.";
         }
 

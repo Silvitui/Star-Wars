@@ -3,7 +3,7 @@ import { CanActivateFn, Router, ActivatedRouteSnapshot, RouterStateSnapshot } fr
 import { Auth } from '@angular/fire/auth';
 import { map, Observable } from 'rxjs';
 
-export const authGuardGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> => {
+export const authGuardGuard: CanActivateFn = (_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> => {
   const auth = inject(Auth); 
   const router = inject(Router); 
 
@@ -12,7 +12,8 @@ export const authGuardGuard: CanActivateFn = (route: ActivatedRouteSnapshot, sta
       if (user) {
         observer.next(true);
       } else {
-        router.navigate(['/login'], { queryParams: { returnUrl: state.url } }); 
+        router.navigate(['/login'],
+       { queryParams: { returnUrl: state.url } }); 
         observer.next(false);
       }
       observer.complete();

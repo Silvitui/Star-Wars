@@ -1,12 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
 
+$primary-color: #ffcc00;
+$dark-bg: #000;
+
 * {
   font-family: 'Exo 2', sans-serif;
 }
 
-$primary-color: #ffcc00;
-$dark-bg: #000;
+.container {
+  padding-bottom: 50px;
+}
 .logo {
     height: 8rem;
     margin-top: 45px;
@@ -35,7 +39,7 @@ $dark-bg: #000;
     right: 15px;
     width: 35px;
     height: 35px;
-    border-radius: 50%;
+    border-radius: 50px;
     background-color: #ffffff;
     color: #000000;
     font-size: 1.1rem;

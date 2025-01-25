@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  errorMessage: string = '';
+  errorMessage: string = "";
   private authService = inject(AuthService);
   private router = inject(Router);
 
@@ -28,7 +28,7 @@ export class RegisterComponent {
   submitRegister() {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
-        next: () => this.router.navigate(['/starships']), 
+        next: () => this.router.navigate(['/home']), 
         error: (error) => {
           this.errorMessage = error.message;
         },

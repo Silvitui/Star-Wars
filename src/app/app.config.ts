@@ -4,7 +4,9 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { environment } from '../environments/environment';
+import { importProvidersFrom } from '@angular/core';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { environment } from './environments/environments';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,5 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
+    importProvidersFrom(InfiniteScrollDirective), 
   ],
 };
