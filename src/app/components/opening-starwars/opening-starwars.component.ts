@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { AudioService } from '../../services/audioservice.service'; 
 
 @Component({
@@ -7,7 +7,7 @@ import { AudioService } from '../../services/audioservice.service';
   styleUrls: ['./opening-starwars.component.scss'],
 })
 export class OpeningStarwarsComponent {
-  constructor(private audioService: AudioService) {}
+  private audioService = inject(AudioService); 
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(): void {

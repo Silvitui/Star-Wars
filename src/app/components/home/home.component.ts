@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 
@@ -11,12 +11,11 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private router = inject(Router);
   currentRoute: string = '';
 
-  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Detecta cambios en la ruta activa
     this.router.events.subscribe(() => {
       this.currentRoute = this.router.url;
     });

@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   credentials: Login = { email: '', password: '' };
   errorMessage = '';
   returnUrl: string = '';
-
   private authService = inject(AuthService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -26,9 +25,7 @@ export class LoginComponent implements OnInit {
     if (returnUrl) {
       this.returnUrl = returnUrl;
     }
-    
   }
-
   login() {
     this.authService.login(this.credentials).subscribe({
       next: () => this.router.navigate([this.returnUrl]),
@@ -42,8 +39,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginWithGoogle().subscribe({
       next: () => this.router.navigate([this.returnUrl]),
       error: (error) => {
-        console.error('Error en Google Sign-In:', error);
-        this.errorMessage = 'Error al iniciar sesión con Google.';
+        this.errorMessage = 'Error logging in with Google';
       },
     });
   }

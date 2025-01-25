@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth-service.service';
 import { Router } from '@angular/router';
@@ -6,18 +6,19 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule,CommonModule,ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   standalone: true,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
-  errorMessage: string = "";
+export class RegisterComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
+  registerForm!: FormGroup; 
+  errorMessage: string = "";
 
-  constructor(private fb: FormBuilder) {
+  ngOnInit(): void {
     this.registerForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -28,14 +29,15 @@ export class RegisterComponent {
   submitRegister() {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
-        next: () => this.router.navigate(['/home']), 
+        next: () => this.router.navigate(['/home']),
         error: (error) => {
           this.errorMessage = error.message;
         },
       });
     }
   }
+
   goBack() {
-    this.router.navigate(['/']);  
+    this.router.navigate(['/']);
   }
 }

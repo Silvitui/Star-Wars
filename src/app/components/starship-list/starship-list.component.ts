@@ -20,14 +20,13 @@ import { Router, RouterLink } from '@angular/router';
 export class StarshipListComponent implements OnInit {
   private starwarsService = inject(StarWarsService);
   private router = inject(Router);
-  public starships: Starship[] = [];
-  public currentPage = 1;
-  public isLoading = false;
-  public hasMoreData = true; 
+   starships: Starship[] = [];
+  currentPage = 1;
+  isLoading = false;
+   hasMoreData = true; 
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    
     this.loadStarships();
   }
 
