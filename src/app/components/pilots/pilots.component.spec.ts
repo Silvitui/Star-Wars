@@ -36,7 +36,7 @@ describe('PilotsComponent', () => {
         url: 'url1', created: '', edited: '', imageUrl: 'luke.jpg' 
       }
     ];
-
+// Garantiza que no se rompa cuando hay un error al obtener un piloto y así continuar mostrando los datos de los demás pilotos
     component.pilotUrls = ['url1', 'url2']; 
 
     starWarsServiceSpy.getPilotByUrl.and.returnValues(
