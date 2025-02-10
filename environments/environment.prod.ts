@@ -1,13 +1,13 @@
 export const environment = {
-    production: false,
+    production: true,
     firebaseConfig: {
-      apiKey: "AIzaSyAKeC61pdE0ebYMDAT3YN9qG2rdKz7wSuY",
-      authDomain: "login-starwars-542d7.firebaseapp.com",
-      projectId: "login-starwars-542d7",
-      storageBucket: "login-starwars-542d7.appspot.com",
-      messagingSenderId: "402821990898",
-      appId: "1:402821990898:web:6279e66801a26c5802836b",
-      measurementId: "G-3VXG9QJH7L"
+      apiKey: process.env["FIREBASE_API_KEY"] || 'default-firebase-key',
+      authDomain: process.env["FIREBASE_AUTH_DOMAIN"] || 'default-auth-domain',
+      projectId: process.env["FIREBASE_PROJECT_ID"] || 'default-project-id',
+      storageBucket: process.env["FIREBASE_STORAGE_BUCKET"] || 'default-storage-bucket',
+      messagingSenderId: process.env["FIREBASE_MESSAGING_SENDER_ID"] || 'default-messaging-id',
+      appId: process.env["FIREBASE_APP_ID"] || 'default-app-id',
+      measurementId: process.env["FIREBASE_MEASUREMENT_ID"] || 'default-measurement-id'
     }
   };
   
