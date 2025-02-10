@@ -13,8 +13,6 @@ import { HeaderComponent } from '../header/header.component';
 export class HomeComponent implements OnInit {
  router = inject(Router);
   currentRoute: string = '';
-
-
   ngOnInit(): void {
     this.router.events.subscribe(() => {
       this.currentRoute = this.router.url;

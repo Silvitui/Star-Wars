@@ -26,7 +26,6 @@ export class StarshipListComponent implements OnInit {
     window.scrollTo(0, 0);
     this.loadStarships();
   }
-
   loadStarships(): void {
     if (this.isLoading || !this.hasMoreData) return;
 
@@ -48,11 +47,9 @@ export class StarshipListComponent implements OnInit {
       },
     });
   }
-
   onScroll(): void {
     this.loadStarships();
   }
-
   goToDetails(id: string): void {
     this.router.navigate(['starships', id]);
   }

@@ -15,7 +15,7 @@ export class PilotsComponent implements OnInit {
   starwarsService = inject(StarWarsService);
   @Input() pilotUrls: string[] = []; 
   pilots: People[] = [];
-
+  
   ngOnInit(): void {
     if (this.pilotUrls.length > 0) {
       const pilotRequests = this.pilotUrls.map(url => this.starwarsService.getPilotByUrl(url));

@@ -1,24 +1,24 @@
 <div class="container mt-4" infiniteScroll (scrolled)="onScroll()" [infiniteScrollDistance]="0.5" [infiniteScrollThrottle]="500">
-    @if(starships.length > 0) {
-      <div class="d-flex flex-column align-items-center">
-        @for(starship of starships; track starship.id) {
-          <div 
-            class="w-75 p-3 bg-dark text-light rounded mb-3" 
-            *ngIf="starship.id" 
-            (click)="goToDetails(starship.id)" 
-            style="cursor: pointer;"
-          >
-            <h5 class="text-uppercase fw-bold">{{ starship.name }}</h5>
-            <p class="text-secondary m-0">{{ starship.model }}</p>
-          </div>
-        }
-      </div>
-  
-      <div *ngIf="isLoading" class="text-center mt-3">
+  @if (starships.length > 0) {
+    <div class="d-flex flex-column align-items-center">
+      @for (starship of starships; track starship.id) {
+        <div 
+          class="w-75 p-3 bg-dark text-light rounded mb-3" 
+          (click)="goToDetails(starship.id!)"
+          style="cursor: pointer;"
+        >
+          <h5 class="text-uppercase fw-bold">{{ starship.name }}</h5>
+          <p class="text-secondary m-0">{{ starship.model }}</p>
+        </div>
+      }
+    </div>
+
+    @if (isLoading) {
+      <div class="text-center mt-3">
         <span class="spinner-border text-warning" role="status"></span>
       </div>
-    } @else {
-      <h3 class="text-light text-center mt-5">No more Starships Available</h3>
     }
-  </div>
-  
+  } @else {
+    <h3 class="text-light text-center mt-5">No more Starships Available</h3>
+  }
+</div>

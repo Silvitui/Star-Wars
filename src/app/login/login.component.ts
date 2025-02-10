@@ -12,14 +12,12 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  authService = inject(AuthService);
+  router = inject(Router);
+ route = inject(ActivatedRoute);
   credentials: Login = { email: '', password: '' };
   errorMessage = '';
   returnUrl: string = '';
-  private authService = inject(AuthService);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
-  loginForm: any;
   ngOnInit() {
   const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
     if (returnUrl) {

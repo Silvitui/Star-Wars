@@ -12,9 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  private authService = inject(AuthService);
-  private router = inject(Router);
-  private fb = inject(FormBuilder);
+  authService = inject(AuthService);
+  router = inject(Router);
+  fb = inject(FormBuilder);
   registerForm!: FormGroup; 
   errorMessage: string = "";
 

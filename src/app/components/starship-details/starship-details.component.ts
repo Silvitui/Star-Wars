@@ -17,7 +17,6 @@ export class StarshipDetailsComponent implements OnInit {
  route = inject(ActivatedRoute);
  router = inject(Router);
 starwarsService = inject(StarWarsService);
-
   starship: Starship | undefined;
 
   ngOnInit(): void {
