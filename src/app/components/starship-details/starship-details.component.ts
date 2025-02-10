@@ -14,9 +14,9 @@ import { PilotsComponent } from "../pilots/pilots.component";
   imports: [CommonModule, FilmsComponent, PilotsComponent],
 })
 export class StarshipDetailsComponent implements OnInit {
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
-  private starwarsService = inject(StarWarsService);
+ route = inject(ActivatedRoute);
+ router = inject(Router);
+starwarsService = inject(StarWarsService);
 
   starship: Starship | undefined;
 

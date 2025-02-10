@@ -6,12 +6,12 @@ import { User, Login, AuthResponse } from '../interfaces/users';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private auth = inject(Auth);
-  private user: Observable<User | null>;
+ auth = inject(Auth);
+user: Observable<User | null>;
   constructor() {
     this.user = this.listenToAuthChanges(); 
   }
-  private listenToAuthChanges(): Observable<User | null> {
+ listenToAuthChanges(): Observable<User | null> {
     return new Observable((observer) => {
       onAuthStateChanged(this.auth, (fbUser) => {
         if (fbUser) {

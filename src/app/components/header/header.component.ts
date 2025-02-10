@@ -14,9 +14,9 @@ import { Login } from '../../interfaces/users';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  private authService = inject(AuthService);
-  private auth = inject(Auth);
-  private router = inject(Router);
+  authService = inject(AuthService);
+auth = inject(Auth);
+  router = inject(Router);
   user: User | null = null;
 
 

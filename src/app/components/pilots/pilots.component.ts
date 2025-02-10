@@ -12,7 +12,7 @@ import { People } from '../../interfaces/people';
   imports: [CommonModule]
 })
 export class PilotsComponent implements OnInit {
-  private starwarsService = inject(StarWarsService);
+  starwarsService = inject(StarWarsService);
   @Input() pilotUrls: string[] = []; 
   pilots: People[] = [];
 

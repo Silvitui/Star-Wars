@@ -11,7 +11,7 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private router = inject(Router);
+ router = inject(Router);
   currentRoute: string = '';
 
 

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AudioService {
-  private audio = new Audio('assets/Starwars.mp3');
+  audio = new Audio('assets/Starwars.mp3');
   isPlaying = false;
   isManuallyPaused: any;
 

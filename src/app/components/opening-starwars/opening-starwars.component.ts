@@ -7,7 +7,7 @@ import { AudioService } from '../../services/audioservice.service';
   styleUrls: ['./opening-starwars.component.scss'],
 })
 export class OpeningStarwarsComponent {
-  private audioService = inject(AudioService); 
+ audioService = inject(AudioService); 
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(): void {

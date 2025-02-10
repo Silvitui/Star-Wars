@@ -12,7 +12,7 @@ import { Film } from '../../interfaces/film';
   imports: [CommonModule]
 })
 export class FilmsComponent implements OnInit {
-  private starwarsService = inject(StarWarsService);
+ starwarsService = inject(StarWarsService);
   @Input() filmUrls: string[] = []; 
   films: Film[] = [];
 

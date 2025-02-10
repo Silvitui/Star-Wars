@@ -7,9 +7,6 @@ import { StarWarsService } from '../../services/star-wars.service';
 import { Starship } from '../../interfaces/starship';
 import { Router, RouterLink } from '@angular/router';
 
-
-
-
 @Component({
   standalone: true,
   selector: 'app-starship-list',
@@ -18,8 +15,8 @@ import { Router, RouterLink } from '@angular/router';
   imports: [CommonModule, InfiniteScrollDirective],
 })
 export class StarshipListComponent implements OnInit {
-  private starwarsService = inject(StarWarsService);
-  private router = inject(Router);
+ starwarsService = inject(StarWarsService);
+  router = inject(Router);
    starships: Starship[] = [];
   currentPage = 1;
   isLoading = false;
