@@ -1,3 +1,5 @@
+import process from 'process'
+
 const getEnvVar = (key: string, fallback: string) => {
   return typeof process !== 'undefined' && process.env[key] ? process.env[key] : fallback;
 };
