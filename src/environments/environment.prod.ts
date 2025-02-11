@@ -7,6 +7,6 @@ export const environment = {
       storageBucket: process.env["FIREBASE_STORAGE_BUCKET"] || 'default-storage-bucket',
       messagingSenderId: process.env["FIREBASE_MESSAGING_SENDER_ID"] || 'default-messaging-id',
       appId: process.env["FIREBASE_APP_ID"] || 'default-app-id',
-      measurementId: process.env["FIREBASE_MEASUREMENT_ID"] || 'default-measurement-id'
+      measurementId: process.env["FIREBASE_MEASUREMENT_ID"] || 'default-measurement-id',
     }
   };

@@ -7,7 +7,7 @@ const firebaseProjectId = process.env.FIREBASE_PROJECT_ID || 'default-project-id
 const environmentFileContent = `
 export const environment = {
   production: true,
-  firebase: {
+  firebaseConfig: {
     apiKey: '${firebaseApiKey}',
     authDomain: '${firebaseAuthDomain}',
     projectId: '${firebaseProjectId}'
