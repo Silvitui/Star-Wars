@@ -16,6 +16,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "baseUrl": "./",
+    "types": ["node"],  // <--- Esta línea es clave
     "paths": {
       "@environments/*": ["src/environments/*"]
     }

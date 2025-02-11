@@ -6,18 +6,14 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { importProvidersFrom } from '@angular/core';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
-import { environment } from '@environments/environment.prod';
-
-
-
- // Importación corregida
+import { environment } from '@environments/environment'; // Usamos el correcto environment
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), // Usamos environment en lugar de environments
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    importProvidersFrom(InfiniteScrollDirective),
+    importProvidersFrom(InfiniteScrollDirective)
   ],
 };
