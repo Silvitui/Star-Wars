@@ -8,6 +8,5 @@ export const environment = {
       messagingSenderId: process.env["FIREBASE_MESSAGING_SENDER_ID"] || 'default-messaging-id',
       appId: process.env["FIREBASE_APP_ID"] || 'default-app-id',
       measurementId: process.env["FIREBASE_MEASUREMENT_ID"] || 'default-measurement-id'
-    }
-  };
-  
+    }
+  };
